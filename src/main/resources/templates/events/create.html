@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+    <title>Home</title>
+</head>
+
+<body>
+
+    <main class="container">
+        <h1 class="title">Creazione Evento</h1>
+        <form th:action="@{|/event/create|}" th:object="${newEvent}" method="post">
+            <label class="form-label" for="title">Titolo:</label>
+            <input class="form-input" type="text" id="title" th:field="${newEvent.title}" />
+            <div th:if="${#fields.hasErrors('title')}" class="invalid-feedback">
+                <ul>
+                    <li th:each="error : ${#fields.errors('title')}" th:text="${error}"></li>
+                </ul>
+            </div>
+
+            <label class="form-label" for="description">Descrizione:</label>
+            <input class="form-input" type="text" id="description" th:field="${newEvent.description}" />
+            <div th:if="${#fields.hasErrors('description')}" class="invalid-feedback">
+                <ul>
+                    <li th:each="error : ${#fields.errors('description')}" th:text="${error}"></li>
+                </ul>
+            </div>
+
+            <label class="form-label" for="email">Email:</label>
+            <input class="form-input" type="email" id="userEmail" th:field="${newEvent.userEmail}" />
+            <div th:if="${#fields.hasErrors('userEmail')}" class="invalid-feedback">
+                <ul>
+                    <li th:each="error : ${#fields.errors('userEmail')}" th:text="${error}"></li>
+                </ul>
+            </div>
+
+            <label class="form-label" for="date">Data:</label>
+            <input class="form-input" type="date" id="date" th:field="${newEvent.issuedAt}" />
+            <div th:if="${#fields.hasErrors('issuedAt')}" class="invalid-feedback">
+                <ul>
+                    <li th:each="error : ${#fields.errors('issuedAt')}" th:text="${error}"></li>
+                </ul>
+            </div>
+            <button class="btn-create" type="submit">Crea</button>
+        </form>
+        <p th:if="${message}" th:text="${message}"></p>
+    </main>
+
+</body>
+
+</html>

@@ -11,6 +11,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
@@ -28,9 +29,10 @@ public class Evento {
     private String description;
 
     @NotBlank(message = "Inserire email utente")
+    @Email(message = "Inserire una email valida")
     private String userEmail;
 
-    @NotNull(message = "Inserire data e ora da ricordare")
+    @NotNull(message = "Inserire data da ricordare")
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate issuedAt;
 
@@ -43,7 +45,6 @@ public class Evento {
 
 
     // Getters and Setters
-
 
     public String getToken() {
         return this.token;
